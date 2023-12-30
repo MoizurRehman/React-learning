@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route,Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./login/login";
 import Dashboard from "./dashboard/dashboard";
 import Sales from "./sales/sales";
@@ -7,20 +7,17 @@ import RoutGuard from "./route-guard/route-guard";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        {/* <Route path='/login' element={<Login/>}/> */}
-        <Route path="/login" Component={Login} />
-        <Route Component={RoutGuard}>
-          <Route path="/feature" Component={Main}>
-            <Route path="/feature/dashboard" Component={Dashboard} />
-            <Route path="/feature/sales" Component={Sales} />
-          </Route>
-        <Route path="*" element={<Navigate to='/login'/>} />
-
+    <Routes>
+      {/* <Route path='/login' element={<Login/>}/> */}
+      <Route path="/login" Component={Login} />
+      <Route Component={RoutGuard}>
+        <Route path="/feature" Component={Main}>
+          <Route path="/feature/dashboard" Component={Dashboard} />
+          <Route path="/feature/sales" Component={Sales} />
         </Route>
-      </Routes>
-    </Router>
+      </Route>
+      <Route path="*" element={<Navigate to="/login" />} />
+    </Routes>
   );
 }
 

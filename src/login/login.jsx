@@ -1,11 +1,31 @@
 import "./login.css";
 import { useNavigate } from "react-router-dom";
+import { useDataContext } from "../context/conxtext";
 
 const Login = () => {
   const navigate = useNavigate();
-  const redirect = (path) => {
-    navigate(path);
+  const contextAPIs = useDataContext();
+  const onLogin = () => {
+    localStorage.setItem("token", "#433ddvd122@");
+    const allModules = [
+      {
+        name: "Dashboard",
+        path: "/feature/dashboard",
+      },
+      {
+        name: "Sales",
+        path: "/feature/sales",
+      },
+      ,
+      {
+        name: "Sales",
+        path: "/feature/sales",
+      },
+    ];
+    contextAPIs.setMenus(allModules);
+    navigate("/feature/dashboard");
   };
+
   return (
     <>
       <div className="container">
@@ -28,10 +48,7 @@ const Login = () => {
                   placeholder="Password"
                 />
               </div>
-              <button
-                className="button login__submit"
-                onClick={() => redirect("/feature/dashboard")}
-              >
+              <button className="button login__submit" onClick={onLogin}>
                 <span className="button__text">Log In Now</span>
                 <i className="button__icon fas fa-chevron-right"></i>
               </button>
